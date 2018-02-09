@@ -51,6 +51,7 @@ namespace testgistogr
             return Math.Exp(XEX[0, 0]) / znam;
         }
 
+        [Obsolete("Use NormalFFound")]
         static public double[,] NormalFRead()
         {
             double[,] rez = new double[291, 2];

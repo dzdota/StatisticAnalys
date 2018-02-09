@@ -135,7 +135,7 @@
             // readToolStripMenuItem
             // 
             this.readToolStripMenuItem.Name = "readToolStripMenuItem";
-            this.readToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.readToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.readToolStripMenuItem.Text = "Зчитати";
             this.readToolStripMenuItem.Click += new System.EventHandler(this.ReadToolStripMenuItem_Click);
             // 
@@ -145,7 +145,7 @@
             this.saveDiogramToolStripMenuItem,
             this.saveFuncToolStripMenuItem});
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.saveToolStripMenuItem.Text = "Зберегти";
             // 
             // saveDiogramToolStripMenuItem
@@ -165,14 +165,14 @@
             // створитиToolStripMenuItem
             // 
             this.створитиToolStripMenuItem.Name = "створитиToolStripMenuItem";
-            this.створитиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.створитиToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.створитиToolStripMenuItem.Text = "Створити ";
             this.створитиToolStripMenuItem.Click += new System.EventHandler(this.СтворитиToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.exitToolStripMenuItem.Text = "Вихід";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 

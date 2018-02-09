@@ -14,6 +14,7 @@ namespace testgistogr
         private PictureBox picture;
         public InitialAnalysMultidimensionalData IAM;
         public InitialAnalysMultidimensionalData IAMIndepended = null;
+        public InitialAnalysMultidimensionalData IAMIndependedToRevers = null;
 
         private List<InitialStatisticalAnalys> ML = new List<InitialStatisticalAnalys>();
         private List<double[]> undolist = new List<double[]>();
@@ -54,14 +55,14 @@ namespace testgistogr
 
             DataGridView = new DataGridView()
             {
-                Location = new Point(0, 0),
+                Location = new Point(513, 0),
                 AllowUserToAddRows = false,
                 RowHeadersWidth = 60,
                 Width = 500,
             };
             if (IAM.n == 2)
             {
-                DataGridView.Dock = DockStyle.Left;
+                DataGridView.Dock = DockStyle.Right;
             }
             else
                 DataGridView.Dock = DockStyle.Fill;
@@ -132,7 +133,7 @@ namespace testgistogr
             {
                 picture = new PictureBox()
                 {
-                    Dock = DockStyle.Right,
+                    Dock = DockStyle.Left,
                     Width = 513,
                 };
                 picture.ContextMenuStrip = ContextMenuStrip;
@@ -159,8 +160,8 @@ namespace testgistogr
 
         private void SetData()
         {
-            Matrix.OwnVectors(IAM.DC, out  IAM.eightvalue, out IAM.eightvector);
-            SortEighten(ref IAM.eightvalue, ref IAM.eightvector);
+            Matrix.OwnVectors(IAM.DC, out IAM.eightvalue, out IAM.eightvector);
+            Matrix.SortEighten(ref IAM.eightvalue, ref IAM.eightvector);
             DataGridView.ColumnCount = IAM.n;/*
             if (IAM.n > 2)
             {*/
@@ -216,29 +217,6 @@ namespace testgistogr
                 DataGridView[c, DataGridView.Rows.Count - 1].Value = Math.Round(Procent[c], 4).ToString();
         }
 
-        private void SortEighten(ref double[] eightvalues, ref double[,] eightvectors)
-        {
-            int n = eightvalues.GetLength(0);
-            double[][] eightvectors1 = new double[n][];
-            for (int i = 0; i < n; i++)
-            {
-                eightvectors1[i] = new double[n];
-                for (int j = 0; j < n; j++)
-                    eightvectors1[i][j] = eightvectors[j, i];
-            }
-            Array.Sort(eightvalues, eightvectors1);
-            Array.Reverse(eightvalues);
-            Array.Reverse(eightvectors1);
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                    eightvectors[i, j] = eightvectors1[j][i];
-            }
-            /*
-            List<PointF> eightvalues  = new List<PointF>();
-            Array.Sort(eightvalues, eightvectors);*/
-
-        }
 
         private void BottomValueToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -280,6 +258,7 @@ namespace testgistogr
             }
             WraitData.RefreshList(treeView1, ML);
             IAMIndepended = new InitialAnalysMultidimensionalData(ML, index, -1);
+            IAMIndependedToRevers = new InitialAnalysMultidimensionalData(X, 1);
             ReversTransformValueToolStripMenuItem.Visible = true;
 
             Procent = new double[IAM.n];
@@ -298,13 +277,13 @@ namespace testgistogr
 
         private InitialAnalysMultidimensionalData ReversTransform(InitialAnalysMultidimensionalData IAMIndepended, double[,] eightvector)
         {
-            double[,] eightvectorClone = new double[IAMIndepended.Xall.GetLength(1), eightvector.GetLength(1)];
+            double[,] eightvectorClone = new double[eightvector.GetLength(1), IAMIndepended.Xall.GetLength(1)];
             for (int r = 0; r < eightvectorClone.GetLength(0); r++)
                 for (int c = 0; c < eightvectorClone.GetLength(1); c++)
                     eightvectorClone[r, c] = eightvector[r, c];
             double[,] X = Matrix.MultiplicMatrix(IAMIndepended.Xall, Matrix.TranspMatrix(eightvectorClone));
-            
-            InitialAnalysMultidimensionalData result =  new InitialAnalysMultidimensionalData(X, -1);
+
+            InitialAnalysMultidimensionalData result = new InitialAnalysMultidimensionalData(X, -1);
 
 
             if (IAM.n == 2)

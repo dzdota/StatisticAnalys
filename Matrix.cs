@@ -104,6 +104,14 @@ namespace testgistogr
             }
             return rez;
         }
+        static public double[,] Abs(double[,] A)
+        {
+            double[,] rez = new double[A.GetLength(0), A.GetLength(1)];
+            for (int i1 = 0; i1 < A.GetLength(0); i1++)
+                for (int i2 = 0; i2 < A.GetLength(1); i2++)
+                    rez[i1, i2] = Math.Abs(A[i1, i2]);
+            return rez;
+        }
         static public double[,] TranspMatrix(double[,] A)
         {
             double[,] rez = new double[A.GetLength(1), A.GetLength(0)];
@@ -327,5 +335,28 @@ namespace testgistogr
         }
 
 
+        public static void SortEighten(ref double[] eightvalues, ref double[,] eightvectors)
+        {
+            int n = eightvalues.GetLength(0);
+            double[][] eightvectors1 = new double[n][];
+            for (int i = 0; i < n; i++)
+            {
+                eightvectors1[i] = new double[n];
+                for (int j = 0; j < n; j++)
+                    eightvectors1[i][j] = eightvectors[j, i];
+            }
+            Array.Sort(eightvalues, eightvectors1);
+            Array.Reverse(eightvalues);
+            Array.Reverse(eightvectors1);
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                    eightvectors[i, j] = eightvectors1[j][i];
+            }
+            /*
+            List<PointF> eightvalues  = new List<PointF>();
+            Array.Sort(eightvalues, eightvectors);*/
+
+        }
     }
 }

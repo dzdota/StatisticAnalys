@@ -976,6 +976,10 @@ namespace testgistogr
                             ref ML, ref undolist, ref treeView1);
                         tabControl1.Controls.Add(MCM.DataTabPage);
 
+                        FactorAnalysisMethod FAM = new FactorAnalysisMethod(new InitialAnalysMultidimensionalData(ML, ind[0], -1),
+                                ref ML, ref undolist, ref treeView1);
+                        tabControl1.Controls.Add(FAM.DataTabPage);
+
                         Classterization classterizatin = new Classterization(new InitialAnalysMultidimensionalData(ML, ind[0], -1),
                             ref ML, ref undolist, ref treeView1);
                         tabControl1.Controls.Add(classterizatin.ClassterizationTabPage);
@@ -1017,6 +1021,10 @@ namespace testgistogr
                     MainComponentMethod MCM = new MainComponentMethod(Dat as InitialAnalysMultidimensionalData,
                             ref ML, ref undolist, ref treeView1);
                     tabControl1.Controls.Add(MCM.DataTabPage);
+
+                    FactorAnalysisMethod FAM = new FactorAnalysisMethod(Dat as InitialAnalysMultidimensionalData,
+                            ref ML, ref undolist, ref treeView1);
+                    tabControl1.Controls.Add(FAM.DataTabPage);
 
                     Classterization classterizatin = new Classterization(new InitialAnalysMultidimensionalData(ML, ind[0], -1),
                         ref ML, ref undolist, ref treeView1);
